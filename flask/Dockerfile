@@ -1,10 +1,10 @@
 # Dockerfile
-FROM python:3.8.2-slim-buster
+FROM python:3.8.6-slim-buster
 
 RUN apt update && apt install -y libaio1 wget
 RUN apt install -y unzip
 RUN apt install -y gcc python3-dev
-RUN pip install--no-cache-dir  --upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
 
 WORKDIR /opt/oracle
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/19800/instantclient-basic-linux.x64-19.8.0.0.0dbru.zip && \
@@ -19,8 +19,9 @@ WORKDIR /app
 ADD . /app
 
 RUN        pip install --no-cache-dir -r requirements.txt
-EXPOSE     8000
 
+# For this statement to work you need to add the next two lines into Pipfilefile
+# [scripts]
 # server = "python manage.py runserver 0.0.0.0:8000"
 #ENTRYPOINT ["pipenv", "run", "server"]
 #uwsgi has wggi.py equivalent run.py configured in in app.ini
