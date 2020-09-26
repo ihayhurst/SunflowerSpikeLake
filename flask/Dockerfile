@@ -20,8 +20,6 @@ ADD . /app
 
 RUN        pip install --no-cache-dir -r requirements.txt
 
-# For this statement to work you need to add the next two lines into Pipfilefile
-# [scripts]
 # server = "python manage.py runserver 0.0.0.0:8000"
 #ENTRYPOINT ["pipenv", "run", "server"]
 #uwsgi has wggi.py equivalent run.py configured in in app.ini
