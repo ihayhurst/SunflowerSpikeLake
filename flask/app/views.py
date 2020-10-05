@@ -9,6 +9,7 @@ def index():
     app_name = os.getenv("APP_NAME")
     flaskVer = flask.__version__
     if app_name:
-        return f"Hello from {app_name}, a flask ver {flaskVer} app running in a Docker container behind Nginx!"
+        message = f"Hello from {app_name}, a flask ver {flaskVer} app running in a Docker container behind Nginx!"
+        return flask.render_template('index.html', message=message)
 
-    return "Hello from Flask"
+    return flask.render_template('index.html', message="Hello from Flask")
