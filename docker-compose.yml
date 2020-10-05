@@ -11,7 +11,7 @@ services:
       - FLASK_ENV=development
       - APP_NAME=MyFlaskApp
     volumes:
-      - ./app:/app/app
+      - ./flask/app:/app/app
     expose:
       - 8080
 
