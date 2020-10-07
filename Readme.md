@@ -8,6 +8,7 @@ Idea is to reuse base for different apps i.e. For API dev  infront of Oracledb o
 - Database module in python (oracle_cx in here as folk seemed keen on it)
 - Redis added but not tested with placeholder app
 - Hot code reload the flask/app is copied into the container but then mounted over with volume from host filesystem, uWSGI will reload if touch_to_reload file is 'touched'
+- Blueprint structure added (website, api separation)
 
 #### TODO ####
 - add celery and code task in demo app
