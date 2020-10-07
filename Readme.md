@@ -1,9 +1,19 @@
 ## Docker containers as template for flask application / API ##
-### Ian M. Hayhurst 2020 09 25 ###
+#### Ian M. Hayhurst 2020 09 25 ####
 
 
-Python 3.8.6 Oracle_cx, Flask with uWSGI Nginx in Docker
-For API dev  infront of Oracledb
+Python 3.8.6 Flask with uWSGI Nginx in Docker. (using docker-compose)
+Idea is to reuse base for different apps i.e. For API dev  infront of Oracledb or similar
+
+- Database module in python (oracle_cx in here as folk seemed keen on it)
+- Redis added but not tested with placeholder app
+- Hot code reload the flask/app is copied into the container but then mounted over with volume from host filesystem, uWSGI will reload if touch_to_reload file is 'touched'
+- Blueprint structure added (website, api separation)
+
+#### TODO ####
+- add celery and code task in demo app
+- add AJAX style checking with redis if task complete
+
 
 ### Drawn from the inspirational articles: ###
 - cx_oracle on docker:  https://www.youtube.com/watch?v=_wab4By7P78
