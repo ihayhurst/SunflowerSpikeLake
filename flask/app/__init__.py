@@ -1,6 +1,6 @@
 from flask import Flask
 from .website.views import website
-from .api.views import api
+from .moa.views import moa
 
 # from extensions import *
 
@@ -10,6 +10,6 @@ def create_app():
 
     with app.app_context():
         app.register_blueprint(website, url_prefix="/")
-        app.register_blueprint(api, url_prefix="/api")
+        app.register_blueprint(moa, url_prefix="/moa")
     return app
 
