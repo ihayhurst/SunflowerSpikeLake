@@ -1,4 +1,4 @@
-## Docker containers as template for flask application / API ##
+## Docker containers as template for flask application / restful API ##
 #### Ian M. Hayhurst 2020 09 25 ####
 
 
