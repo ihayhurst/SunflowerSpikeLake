@@ -1,5 +1,5 @@
 from flask import  Blueprint, Response
-#from flask import current_app as app
+from flask import current_app as app
 from flask_restful import Api, Resource
 import cx_Oracle
 import markdown
@@ -10,9 +10,12 @@ moa = Blueprint('moa', __name__)
 api = Api(moa)
 
 def dbGetConn():
-    ##conn_str = f"{app.config['DATABASE_USER']}, {app.config['DATABASE_PASSWORD']}, {dsn}"
-    ## fix above as only form below working
-    conn_str ="username/password@//databasehostname.amazonaws.com:1530/SERVICENAME"
+    dbhost = app.config['DATABASE_HOST']
+    dbport = app.config['DATABASE_PORT']
+    dbname = app.config['DATABASE_NAME']
+    dbuser = app.config['DATABASE_USER']
+    dbpw = app.config['DATABASE_PASSWORD']
+    conn_str = f"{dbuser}/{dbpw}@//{dbhost}:{dbport}/{dbname}"
     conn = cx_Oracle.connect(conn_str)
     return conn
 
