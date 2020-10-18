@@ -28,14 +28,14 @@ Subsequent response definitions will only detail the expected value of the `data
 - `200 OK` on success
 
 ```json
-[
-    {
-        'ENTITY_ID': 222,
-        'LEVEL_ID': 1,
-        'PREF_SYNONYM_ID': 168,
-        'FIRST_SYNONYM': 'protein biosynthesis',
-        'IGNORE': None,
-        'CLASS_ID': 3
-    }
-]
+>[  
+>    {  
+>        'ENTITY_ID': 222,  
+>        'LEVEL_ID': 1,  
+>        'PREF_SYNONYM_ID': 168,  
+>        'FIRST_SYNONYM': 'protein biosynthesis',  
+>        'IGNORE': None,  
+>        'CLASS_ID': 3  
+>    }  
+>]  
 ```
