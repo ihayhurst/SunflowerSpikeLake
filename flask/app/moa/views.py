@@ -11,7 +11,8 @@ api = Api(moa)
 
 def dbGetConn():
     ##conn_str = f"{app.config['DATABASE_USER']}, {app.config['DATABASE_PASSWORD']}, {dsn}"
-    conn_str ="SCO_MOA_ONTOLOGY/sc0_m04_0n70logy@//deawdoraappp001.c0teethmpf9v.eu-central-1.rds.amazonaws.com:1530/APEXRDP2"
+    ## fix above as only form below working
+    conn_str ="username/password@//databasehostname.amazonaws.com:1530/SERVICENAME"
     conn = cx_Oracle.connect(conn_str)
     return conn
 
