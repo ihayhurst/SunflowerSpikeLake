@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 import cx_Oracle
 import markdown
 import os
-from .. import db
+#from .. import db
 
 moa = Blueprint('moa', __name__)
 api = Api(moa)
@@ -44,23 +44,14 @@ def moa_home():
         return markdown.markdown(content)
 
 
-@moa.route('/wibble')
-def wibble():
-    #data = moa.config'[DATABASE_HOST']
-    data = "some data"
-    return f"<h4>wibble: </h4>{data}"
-
 class Entity(Resource):
-    def get(self, id):
-        sql = f"select * from MOA_ENTITY where entity_id={id}"
+    def get(self, id=None):
+        if id is not None:
+            sql = f"select * from MOA_ENTITY where entity_id={id}"
+        else:
+            sql = f"select * from MOA_ENTITY"
         data  = getData(sql)
         return data, 201
 
-class Entitys(Resource):
-    def get(self):
-        sql = f"select * from MOA_ENTITY"
-        data  = getData(sql)
-        return data, 201
-
-api.add_resource(Entity, '/entity/<int:id>')
-api.add_resource(Entitys, '/entity')
+api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
+api.add_resource(Entity, '/entity', endpoint='entitys')
