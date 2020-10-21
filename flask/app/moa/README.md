@@ -39,3 +39,11 @@ Subsequent response definitions will only detail the expected value of the `data
     }  
 ]  
 ```
+### Triple from ID
+
+**Definition**
+
+| Endpoint                     | Expected return                         |
+|:-----------------------------|:----------------------------------------|
+| `GET /moa/triple`            | - returns all triple ids                |
+| `GET /moa/triple/triple/<id>`| - returns all triples with given id     |
