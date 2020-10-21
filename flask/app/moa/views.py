@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 import cx_Oracle
 import markdown
 import os
-from .. import db
+#from .. import db
 
 moa = Blueprint('moa', __name__)
 api = Api(moa)
