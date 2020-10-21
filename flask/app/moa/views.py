@@ -40,8 +40,10 @@ def moa_home():
         # Read the content of the file
         content = markdown_file.read()
 
+
         # Convert to HTML
-        return markdown.markdown(content)
+        md = markdown.markdown(content, extensions=['tables'])
+        return md
 
 
 class Entity(Resource):
@@ -75,5 +77,6 @@ api.add_resource(Triple, '/triple/triple/<int:tripleid>', endpoint='tripleid')
 api.add_resource(Triple, '/triple/subject/<int:subjectid>', endpoint='subjectid')
 api.add_resource(Triple, '/triple/predicate/<int:predicateid>', endpoint='predicateid')
 api.add_resource(Triple, '/triple/object/<int:objectid>', endpoint='objectid')
-api.add_resource(Triple, '/triple', endpoint='triple')
+api.add_resource(Triple, '/triple/<int:tripleid>', endpoint='triple')
+api.add_resource(Triple, '/triple', endpoint='triples')
 
