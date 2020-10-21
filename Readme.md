@@ -1,6 +1,8 @@
 ## Docker containers as template for flask application / restful API ##
 #### Ian M. Hayhurst 2020 09 25 ####
 
+Specific documentation for the API (to the MOA database) implemented is here https://git.syngentaaws.org/ecicl/flora-ngx/-/tree/master/flask/app/moa
+The rest of this readme is the generic development of a python flask api for an database (oracle here) in docker containers
 
 Python 3.8.6 Flask with uWSGI Nginx in Docker. (using docker-compose)
 Idea is to reuse base for different apps i.e. For API dev  infront of Oracledb or similar
