@@ -47,3 +47,15 @@ Subsequent responses will be of the same form
 | `GET /moa/triple/subject/<id>`     | - returns subject(s) with given id      |
 | `GET /moa/triple/predicate/<id>`   | - returns predicate(s) with given id    |
 | `GET /moa/triple/object/<id>`      | - returns objects(s) with given id      |
+
+### Evidence
+
+**Definition**
+
+| Endpoint                           | Expected return                             |
+|:-----------------------------------|:--------------------------------------------|
+| `GET /moa/evidence`                | - returns all evidence                      |
+| `GET /moa/evidence/<id>`           | - returns evidince with given id            |
+| `GET /moa/evidence/evidence/<id>`  | - returns evidence with given id            |
+| `GET /moa/evidence/triple/<id>`    | - returns evidence(s) with given tripple id |
+

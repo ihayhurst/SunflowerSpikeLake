@@ -57,7 +57,7 @@ class Entity(Resource):
 
 
 class Triple(Resource):
-    def get (self, tripleid=None, subjectid=None, predicateid=None,objectid=None):
+    def get(self, tripleid=None, subjectid=None, predicateid=None,objectid=None):
         if tripleid is not None:
             sql = f"select * from MOA_TRIPLE where triple_id={tripleid}"
         elif subjectid is not None:
@@ -71,12 +71,31 @@ class Triple(Resource):
         data = getData(sql)
         return data,201
 
+class Evidence(Resource):
+    def get(self, evidenceid=None, evidenceTripleid=None):
+        if evidenceid is not None:
+            sql = f"select * from MOA_EVIDENCE where evidence_id={evidenceid}"
+        elif evidenceTripleid is not None:
+            sql = f"select * from MOA_EVIDENCE where triple_id={evidenceTripleid}"
+        else:
+            sql = f"select * from MOA_EVIDENCE"
+        data = getData(sql)
+        return data,201
+
+# Resources
+# Entity
 api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
 api.add_resource(Entity, '/entity', endpoint='entitys')
+# Triple
+api.add_resource(Triple, '/triple', endpoint='triples')
+api.add_resource(Triple, '/triple/<int:tripleid>', endpoint='triple')
 api.add_resource(Triple, '/triple/triple/<int:tripleid>', endpoint='tripleid')
 api.add_resource(Triple, '/triple/subject/<int:subjectid>', endpoint='subjectid')
 api.add_resource(Triple, '/triple/predicate/<int:predicateid>', endpoint='predicateid')
 api.add_resource(Triple, '/triple/object/<int:objectid>', endpoint='objectid')
-api.add_resource(Triple, '/triple/<int:tripleid>', endpoint='triple')
-api.add_resource(Triple, '/triple', endpoint='triples')
+# Evidence
+api.add_resource(Evidence, '/evidence', endpoint='evidences')
+api.add_resource(Evidence, '/evidence/<int:evidenceid>', endpoint='evidence')
+api.add_resource(Evidence, '/evidence/evidence/<int:evidenceid>', endpoint='evidenceid')
+api.add_resource(Evidence, '/evidence/triple/<int:evidenceTripleid>', endpoint='evidenceTripleid')
 
