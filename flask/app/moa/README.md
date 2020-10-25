@@ -1,17 +1,11 @@
 # Mode Of Action / Mode of Resistance database API
 
 ## Usage
-(This is not presently true, I don't know what they will have at this point but it's a nice idea)  
 All responses will have the form
+Content-Type application/json
 
-```json
-{
-    "data": "Mixed type holding the content of the response",
-    "message": "Description of what happened"
-}
-```
-
-Subsequent response definitions will only detail the expected value of the `data field`
+Then an array [ {"column_name":value, "column":value... }, {...}]
+for a single value or multiple values
 
 ### Entity from ID
 
@@ -39,3 +33,17 @@ Subsequent response definitions will only detail the expected value of the `data
     }  
 ]  
 ```
+Subsequent responses will be of the same form
+
+### Triple from ID
+
+**Definition**
+
+| Endpoint                           | Expected return                         |
+|:-----------------------------------|:----------------------------------------|
+| `GET /moa/triple`                  | - returns all triple ids                |
+| `GET /moa/triple/<id>`             | - returns triple(s) with given id       |
+| `GET /moa/triple/triple/<id>`      | - returns triple(s) with given id       |
+| `GET /moa/triple/subject/<id>`     | - returns subject(s) with given id      |
+| `GET /moa/triple/predicate/<id>`   | - returns predicate(s) with given id    |
+| `GET /moa/triple/object/<id>`      | - returns objects(s) with given id      |

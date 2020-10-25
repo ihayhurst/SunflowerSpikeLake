@@ -40,8 +40,10 @@ def moa_home():
         # Read the content of the file
         content = markdown_file.read()
 
+
         # Convert to HTML
-        return markdown.markdown(content, extensions=['tables', 'fenced_code'])
+        md = markdown.markdown(content, extensions=['tables', 'fenced_code'])
+        return md
 
 
 class Entity(Resource):
@@ -53,5 +55,28 @@ class Entity(Resource):
         data  = getData(sql)
         return data, 201
 
+
+class Triple(Resource):
+    def get (self, tripleid=None, subjectid=None, predicateid=None,objectid=None):
+        if tripleid is not None:
+            sql = f"select * from MOA_TRIPLE where triple_id={tripleid}"
+        elif subjectid is not None:
+            sql = f"select * from MOA_TRIPLE where subject_id={subjectid}"
+        elif predicateid is not None:
+            sql = f"select * from MOA_TRIPLE where predicate_id={predicateid}"
+        elif objectid is not None:
+            sql = f"select * from MOA_TRIPLE where object_id={predicateid}"
+        else:
+            sql = f"select * from MOA_TRIPLE"
+        data = getData(sql)
+        return data,201
+
 api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
 api.add_resource(Entity, '/entity', endpoint='entitys')
+api.add_resource(Triple, '/triple/triple/<int:tripleid>', endpoint='tripleid')
+api.add_resource(Triple, '/triple/subject/<int:subjectid>', endpoint='subjectid')
+api.add_resource(Triple, '/triple/predicate/<int:predicateid>', endpoint='predicateid')
+api.add_resource(Triple, '/triple/object/<int:objectid>', endpoint='objectid')
+api.add_resource(Triple, '/triple/<int:tripleid>', endpoint='triple')
+api.add_resource(Triple, '/triple', endpoint='triples')
+
