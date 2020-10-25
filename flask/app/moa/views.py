@@ -41,7 +41,7 @@ def moa_home():
         content = markdown_file.read()
 
         # Convert to HTML
-        return markdown.markdown(content)
+        return markdown.markdown(content, extensions=['tables', 'fenced_code'])
 
 
 class Entity(Resource):
