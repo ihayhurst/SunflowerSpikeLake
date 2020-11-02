@@ -24,7 +24,8 @@ def website_about():
     envprint = {k: v for k, v in current_app.config.items()}
     flaskVer = __flask_version__
     if app_name:
-        message = f"Hello from {app_name}, a flask ver {flaskVer} app running in a Docker container behind Nginx! with redis and hot code load"
+        message = f"Hello from {app_name}, a flask ver {flaskVer} \
+                   app running in a Docker container behind Nginx! with redis and hot code load"
         return render_template("about.html", message=message, envprint=envprint)
 
     return render_template("about.html", message="Hello from Flask", envprint=envprint)
