@@ -1,6 +1,8 @@
 from flask import Blueprint, Response
 from flask import current_app as app
 from flask_restful import Api, Resource
+import json
+import datetime
 import cx_Oracle
 import markdown
 import os
@@ -29,6 +31,11 @@ def getData(sql):
     conn.close()
     return (jsonData if jsonData else None)
 
+def dump_date(thing):
+    if isinstance(thing, datetime.datetime):
+        return thing.isoformat()
+    return thing
+
 
 @moa.route('/')
 def moa_home():
@@ -53,6 +60,9 @@ class Entity(Resource):
         else:
             sql = f"select * from MOA_ENTITY"
         data  = getData(sql)
+        #set default handler to dump_date if there is a date object
+        data = json.dumps(data, default = dump_date)
+        data = json.loads(data)
         return data, 201
 
 
