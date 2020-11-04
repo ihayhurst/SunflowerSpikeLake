@@ -47,9 +47,8 @@ def moa_home():
         # Read the content of the file
         content = markdown_file.read()
 
-
         # Convert to HTML
-        md = markdown.markdown(content, extensions=['tables'])
+        md = markdown.markdown(content, extensions=['tables', 'fenced-code'])
         return md
 
 
