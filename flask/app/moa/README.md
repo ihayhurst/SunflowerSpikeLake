@@ -59,3 +59,16 @@ Subsequent responses will be of the same form
 | `GET /moa/evidence/evidence/<id>`  | - returns evidence with given id            |
 | `GET /moa/evidence/triple/<id>`    | - returns evidence(s) with given tripple id |
 
+
+### Group
+
+**Definition**
+
+| Endpoint                           | Expected return                             |
+|:-----------------------------------|:--------------------------------------------|
+| `GET /moa/group`                   | - returns all groups                        |
+| `GET /moa/group/<id>`              | - returns group with given id               |
+| `GET /moa/group/group/<id>`        | - returns group with given id               |
+| `GET /moa/group/entity/<id>`       | - returns groups(s) with given entity id    |
+
+

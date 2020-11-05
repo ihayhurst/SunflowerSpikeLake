@@ -91,6 +91,17 @@ class Evidence(Resource):
         data = getData(sql)
         return data,201
 
+class Group(Resource):
+    def get (self, groupid=None, entityid=None):
+        if groupid is not None:
+            sql = f"select * from MOA_GROUP where MOA_GROUP_ID={groupid}"
+        elif entityid is not None:
+            sql = f"select * from MOA_GROUP where ENTITY_ID={entityid}"
+        else:
+            sql = f"select * from MOA_GROUP"
+        data = getData(sql)
+        return data,201
+
 # Resources
 # Entity
 api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
@@ -107,4 +118,8 @@ api.add_resource(Evidence, '/evidence', endpoint='evidences')
 api.add_resource(Evidence, '/evidence/<int:evidenceid>', endpoint='evidence')
 api.add_resource(Evidence, '/evidence/evidence/<int:evidenceid>', endpoint='evidenceid')
 api.add_resource(Evidence, '/evidence/triple/<int:evidenceTripleid>', endpoint='evidenceTripleid')
-
+# Group
+api.add_resource(Group, '/group', endpoint='groups')
+api.add_resource(Group, '/group/<int:groupid>', endpoint='group')
+api.add_resource(Group, '/group/group/<int:groupid>', endpoint='groupid')
+api.add_resource(Group, '/group/entity/<int:entityid>', endpoint='entityid')
