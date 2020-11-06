@@ -1,6 +1,6 @@
 from flask import Blueprint, Response
 from flask import current_app as app
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 import json
 import datetime
 import cx_Oracle
@@ -80,6 +80,7 @@ class Triple(Resource):
         data = getData(sql)
         return data,201
 
+
 class Evidence(Resource):
     def get(self, evidenceid=None, evidenceTripleid=None):
         if evidenceid is not None:
@@ -91,6 +92,7 @@ class Evidence(Resource):
         data = getData(sql)
         return data,201
 
+
 class Group(Resource):
     def get (self, groupid=None, entityid=None):
         if groupid is not None:
@@ -99,6 +101,27 @@ class Group(Resource):
             sql = f"select * from MOA_GROUP where ENTITY_ID={entityid}"
         else:
             sql = f"select * from MOA_GROUP"
+        data = getData(sql)
+        return data,201
+
+
+class SpeciesProtein(Resource):
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('species', type=str, location='args')
+        super(SpeciesProtein, self).__init__()
+
+    def get (self, sprotid=None, entityid=None):
+        args = self.reqparse.parse_args() 
+        if sprotid is not None:
+            sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_PROTEIN_ID={sprotid}"
+        elif entityid is not None:
+            sql = f"select * from MOA_SPECIES_PROTEIN where ENTITY_ID={entityid}"
+        elif 'species' in args:
+            speccode = args['species']
+            sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_CODE='{speccode}'"
+        else:
+            sql = f"select * from MOA_SPECIES_PROTEIN"
         data = getData(sql)
         return data,201
 
@@ -123,3 +146,9 @@ api.add_resource(Group, '/group', endpoint='groups')
 api.add_resource(Group, '/group/<int:groupid>', endpoint='group')
 api.add_resource(Group, '/group/group/<int:groupid>', endpoint='groupid')
 api.add_resource(Group, '/group/entity/<int:entityid>', endpoint='entityid')
+# SpeciesProtein
+api.add_resource(SpeciesProtein, '/species-protein', endpoint='species-proteins')
+api.add_resource(SpeciesProtein, '/species-protein/<int:sprotid>', endpoint='species-protein')
+api.add_resource(SpeciesProtein, '/species-protein/species-protein/<int:sprotid>', endpoint='species-proteinid')
+api.add_resource(SpeciesProtein, '/species-protein/entity/<int:entityid>', endpoint='sprentityid')
+api.add_resource(SpeciesProtein, '/species-protein/species-code', endpoint='speccode')
