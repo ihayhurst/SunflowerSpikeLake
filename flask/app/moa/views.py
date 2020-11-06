@@ -6,20 +6,21 @@ import datetime
 import cx_Oracle
 import markdown
 import os
-#from .. import db
 
-moa = Blueprint('moa', __name__)
+moa = Blueprint("moa", __name__)
 api = Api(moa)
 
+
 def dbGetConn():
-    dbhost = app.config['DATABASE_HOST']
-    dbport = app.config['DATABASE_PORT']
-    dbname = app.config['DATABASE_NAME']
-    dbuser = app.config['DATABASE_USER']
-    dbpw = app.config['DATABASE_PASSWORD']
+    dbhost = app.config["DATABASE_HOST"]
+    dbport = app.config["DATABASE_PORT"]
+    dbname = app.config["DATABASE_NAME"]
+    dbuser = app.config["DATABASE_USER"]
+    dbpw = app.config["DATABASE_PASSWORD"]
     conn_str = f"{dbuser}/{dbpw}@//{dbhost}:{dbport}/{dbname}"
     conn = cx_Oracle.connect(conn_str)
     return conn
+
 
 def getData(sql):
     conn = dbGetConn()
@@ -29,7 +30,7 @@ def getData(sql):
     jsonData = [dict(zip([key[0] for key in curr.description], row)) for row in data]
     curr.close()
     conn.close()
-    return (jsonData if jsonData else None)
+    return jsonData if jsonData else None
 
 def dump_date(thing):
     if isinstance(thing, datetime.datetime):
@@ -37,18 +38,18 @@ def dump_date(thing):
     return thing
 
 
-@moa.route('/')
+@moa.route("/")
 def moa_home():
     """Present some documentation"""
 
     # Open the README file
-    with open(os.path.join(moa.root_path) + '/README.md', 'r') as markdown_file:
+    with open(os.path.join(moa.root_path) + "/README.md", "r") as markdown_file:
 
         # Read the content of the file
         content = markdown_file.read()
 
         # Convert to HTML
-        md = markdown.markdown(content, extensions=['tables', 'fenced_code'])
+        md = markdown.markdown(content, extensions=["tables", "fenced_code"])
         return md
 
 
@@ -66,7 +67,7 @@ class Entity(Resource):
 
 
 class Triple(Resource):
-    def get(self, tripleid=None, subjectid=None, predicateid=None,objectid=None):
+    def get(self, tripleid=None, subjectid=None, predicateid=None, objectid=None):
         if tripleid is not None:
             sql = f"select * from MOA_TRIPLE where triple_id={tripleid}"
         elif subjectid is not None:
@@ -78,7 +79,7 @@ class Triple(Resource):
         else:
             sql = f"select * from MOA_TRIPLE"
         data = getData(sql)
-        return data,201
+        return data, 201
 
 
 class Evidence(Resource):
