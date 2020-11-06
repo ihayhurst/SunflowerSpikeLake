@@ -109,17 +109,21 @@ class SpeciesProtein(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('species', type=str, location='args')
+        self.reqparse.add_argument('uniprot', type=str, location='args')
         super(SpeciesProtein, self).__init__()
 
     def get (self, sprotid=None, entityid=None):
-        args = self.reqparse.parse_args() 
+        args = self.reqparse.parse_args()
         if sprotid is not None:
             sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_PROTEIN_ID={sprotid}"
         elif entityid is not None:
             sql = f"select * from MOA_SPECIES_PROTEIN where ENTITY_ID={entityid}"
-        elif 'species' in args:
+        elif args['species'] is not None:
             speccode = args['species']
             sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_CODE='{speccode}'"
+        elif args['uniprot'] is not None:
+            uniprot = args['uniprot']
+            sql = f"select * from MOA_SPECIES_PROTEIN where UNIPROT_CODE='{uniprot}'"
         else:
             sql = f"select * from MOA_SPECIES_PROTEIN"
         data = getData(sql)
@@ -152,3 +156,4 @@ api.add_resource(SpeciesProtein, '/species-protein/<int:sprotid>', endpoint='spe
 api.add_resource(SpeciesProtein, '/species-protein/species-protein/<int:sprotid>', endpoint='species-proteinid')
 api.add_resource(SpeciesProtein, '/species-protein/entity/<int:entityid>', endpoint='sprentityid')
 api.add_resource(SpeciesProtein, '/species-protein/species-code', endpoint='speccode')
+api.add_resource(SpeciesProtein, '/species-protein/uniprot-code', endpoint='uniprotcode')
