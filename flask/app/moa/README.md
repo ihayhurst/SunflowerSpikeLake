@@ -71,4 +71,17 @@ Subsequent responses will be of the same form
 | `GET /moa/group/group/<id>`        | - returns group with given id               |
 | `GET /moa/group/entity/<id>`       | - returns groups(s) with given entity id    |
 
+### SpeciesProtein
+
+**Definition**
+
+| Endpoint                                                | Expected return                                          |
+|:--------------------------------------------------------|:---------------------------------------------------------|
+| `GET /moa/species-protein`                              | - returns all species protein ids                        |
+| `GET /moa/species-protein/<id>`                         | - returns species protein id with given id               |
+| `GET /moa/species-protein/species-protein/<id>`         | - returns species protein id with given id               |
+| `GET /moa/species-protein/entity/<id>`                  | - returns species protein id(s) with given entity id     |
+| `GET /moa/species-protein/species-code?species=<code>`  | - returns species protein id(s) with given species code  |
+| `GET /moa/species-protein/uniprot-code?uniprot=<code>`  | - returns species protein id(s) with given uniprot code  |
+
 
