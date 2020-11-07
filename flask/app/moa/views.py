@@ -1,4 +1,4 @@
-from flask import Blueprint, Response
+from flask import Blueprint
 from flask import current_app as app
 from flask_restful import Api, Resource, reqparse
 import json
@@ -32,6 +32,7 @@ def getData(sql):
     conn.close()
     return jsonData if jsonData else None
 
+
 def dump_date(thing):
     if isinstance(thing, datetime.datetime):
         return thing.isoformat()
@@ -58,10 +59,10 @@ class Entity(Resource):
         if id is not None:
             sql = f"select * from MOA_ENTITY where entity_id={id}"
         else:
-            sql = f"select * from MOA_ENTITY"
-        data  = getData(sql)
-        #set default handler to dump_date if there is a date object
-        data = json.dumps(data, default = dump_date)
+            sql = "select * from MOA_ENTITY"
+        data = getData(sql)
+        # set default handler to dump_date if there is a date object
+        data = json.dumps(data, default=dump_date)
         data = json.loads(data)
         return data, 201
 
@@ -75,9 +76,9 @@ class Triple(Resource):
         elif predicateid is not None:
             sql = f"select * from MOA_TRIPLE where predicate_id={predicateid}"
         elif objectid is not None:
-            sql = f"select * from MOA_TRIPLE where object_id={predicateid}"
+            sql = f"select * from MOA_TRIPLE where object_id={objectid}"
         else:
-            sql = f"select * from MOA_TRIPLE"
+            sql = "select * from MOA_TRIPLE"
         data = getData(sql)
         return data, 201
 
@@ -89,21 +90,21 @@ class Evidence(Resource):
         elif evidenceTripleid is not None:
             sql = f"select * from MOA_EVIDENCE where triple_id={evidenceTripleid}"
         else:
-            sql = f"select * from MOA_EVIDENCE"
+            sql = "select * from MOA_EVIDENCE"
         data = getData(sql)
-        return data,201
+        return data, 201
 
 
 class Group(Resource):
-    def get (self, groupid=None, entityid=None):
+    def get(self, groupid=None, entityid=None):
         if groupid is not None:
             sql = f"select * from MOA_GROUP where MOA_GROUP_ID={groupid}"
         elif entityid is not None:
             sql = f"select * from MOA_GROUP where ENTITY_ID={entityid}"
         else:
-            sql = f"select * from MOA_GROUP"
+            sql = "select * from MOA_GROUP"
         data = getData(sql)
-        return data,201
+        return data, 201
 
 
 class SpeciesProtein(Resource):
@@ -113,7 +114,7 @@ class SpeciesProtein(Resource):
         self.reqparse.add_argument('uniprot', type=str, location='args')
         super(SpeciesProtein, self).__init__()
 
-    def get (self, sprotid=None, entityid=None):
+    def get(self, sprotid=None, entityid=None):
         args = self.reqparse.parse_args()
         if sprotid is not None:
             sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_PROTEIN_ID={sprotid}"
@@ -126,9 +127,10 @@ class SpeciesProtein(Resource):
             uniprot = args['uniprot']
             sql = f"select * from MOA_SPECIES_PROTEIN where UNIPROT_CODE='{uniprot}'"
         else:
-            sql = f"select * from MOA_SPECIES_PROTEIN"
+            sql = "select * from MOA_SPECIES_PROTEIN"
         data = getData(sql)
-        return data,201
+        return data, 201
+
 
 # Resources
 # Entity
