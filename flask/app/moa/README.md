@@ -9,7 +9,8 @@ for a single value or multiple values
 
 ### Entity from ID
 
-**Definition**  
+**Definition** 
+
 >`GET /moa/entity`        - with no arguement will return all ids  
 >`GET /moa/entity/<id>`   - returns individual entity  
 
@@ -19,7 +20,7 @@ for a single value or multiple values
 
 **Response**
 
-- `200 OK` on success
+- `201 OK` on success
 
 ```json
 [  
@@ -95,4 +96,11 @@ Subsequent responses will be of the same form
 | `GET /moa/entity-link/entity-link/<id>`        | - returns entity-link with given id           |
 | `GET /moa/entity-link/entity/<id>      `       | - returns entity-link(s) with given entity id |
 
+### Class
 
+**Definition**
+
+| Endpoint                           | Expected return                        |
+|:-----------------------------------|:---------------------------------------|
+| `GET /moa/class`                   | - returns all class ids                |
+| `GET /moa/class/<id>`              | - returns class(s) with given id       |

@@ -146,10 +146,19 @@ class EntityLink(Resource):
         return data, 201
 
 
+class MClass(Resource):
+    def get(self, clid=None):
+        if clid is not None:
+            sql = f"select * from MOA_CLASS where CLASS_ID={clid}"
+        else:
+            sql = "select * from MOA_CLASS"
+        data = getData(sql)
+        return data, 201
+
 # Resources
 # Entity
-api.add_resource(Entity, "/entity/<int:id>", endpoint="entity")
 api.add_resource(Entity, "/entity", endpoint="entitys")
+api.add_resource(Entity, "/entity/<int:id>", endpoint="entity")
 # Triple
 api.add_resource(Triple, "/triple", endpoint="triples")
 api.add_resource(Triple, "/triple/<int:tripleid>", endpoint="triple")
@@ -193,3 +202,7 @@ api.add_resource(EntityLink, "/entity-link/entity-link/<int:elid>", endpoint="el
 api.add_resource(
     EntityLink, "/entity-link/entity/<int:entityid>", endpoint="elentityid"
 )
+# Class
+api.add_resource(MClass, "/class", endpoint="clids")
+api.add_resource(MClass, "/class/<int:clid>", endpoint="clid")
+
