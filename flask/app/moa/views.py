@@ -132,6 +132,17 @@ class SpeciesProtein(Resource):
         return data, 201
 
 
+class EntityLink(Resource):
+    def get(self, elid=None, entityid=None):
+        if elid is not None:
+            sql = f"select * from MOA_ENTITY_LINK where ID={elid}"
+        elif entityid is not None:
+            sql = f"select * from MOA_ENTITY_LINK where ENTITY_ID={entityid}"
+        else:
+            sql = "select * from MOA_ENTITY_LINK"
+        data = getData(sql)
+        return data, 201
+
 # Resources
 # Entity
 api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
@@ -160,3 +171,8 @@ api.add_resource(SpeciesProtein, '/species-protein/species-protein/<int:sprotid>
 api.add_resource(SpeciesProtein, '/species-protein/entity/<int:entityid>', endpoint='sprentityid')
 api.add_resource(SpeciesProtein, '/species-protein/species-code', endpoint='speccode')
 api.add_resource(SpeciesProtein, '/species-protein/uniprot-code', endpoint='uniprotcode')
+# EntityLink
+api.add_resource(EntityLink, '/entity-link', endpoint='entitylinks')
+api.add_resource(EntityLink, '/entity-link/<int:elid>', endpoint='entitylink')
+api.add_resource(EntityLink, '/entity-link/entity-link/<int:elid>', endpoint='elid')
+api.add_resource(EntityLink, '/entity-link/entity/<int:entityid>', endpoint='elentityid')

@@ -84,4 +84,15 @@ Subsequent responses will be of the same form
 | `GET /moa/species-protein/species-code?species=<code>`  | - returns species protein id(s) with given species code  |
 | `GET /moa/species-protein/uniprot-code?uniprot=<code>`  | - returns species protein id(s) with given uniprot code  |
 
+### EntityLink
+
+**Definition**
+
+| Endpoint                                       | Expected return                               |
+|:-----------------------------------------------|:----------------------------------------------|
+| `GET /moa/entity-link`                         | - returns all entity-links                    |
+| `GET /moa/entity-link/<id>`                    | - returns entity-link with given id           |
+| `GET /moa/entity-link/entity-link/<id>`        | - returns entity-link with given id           |
+| `GET /moa/entity-link/entity/<id>      `       | - returns entity-link(s) with given entity id |
+
 
