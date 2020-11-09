@@ -21,7 +21,8 @@ def website_about():
 
     # Use os.getenv("key") to get environment variables
     app_name = os.getenv("APP_NAME")
-    envprint = {k: v for k, v in current_app.config.items()}
+    # only use for debug as credentials stored in env
+    #envprint = {k: v for k, v in current_app.config.items()}
     flaskVer = __flask_version__
     if app_name:
         message = f"Hello from {app_name}, a flask ver {flaskVer} \
