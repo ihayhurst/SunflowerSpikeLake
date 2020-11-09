@@ -110,21 +110,23 @@ class Group(Resource):
 class SpeciesProtein(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('species', type=str, location='args')
-        self.reqparse.add_argument('uniprot', type=str, location='args')
+        self.reqparse.add_argument("species", type=str, location="args")
+        self.reqparse.add_argument("uniprot", type=str, location="args")
         super(SpeciesProtein, self).__init__()
 
     def get(self, sprotid=None, entityid=None):
         args = self.reqparse.parse_args()
         if sprotid is not None:
-            sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_PROTEIN_ID={sprotid}"
+            sql = (
+                f"select * from MOA_SPECIES_PROTEIN where SPECIES_PROTEIN_ID={sprotid}"
+            )
         elif entityid is not None:
             sql = f"select * from MOA_SPECIES_PROTEIN where ENTITY_ID={entityid}"
-        elif args['species'] is not None:
-            speccode = args['species']
+        elif args["species"] is not None:
+            speccode = args["species"]
             sql = f"select * from MOA_SPECIES_PROTEIN where SPECIES_CODE='{speccode}'"
-        elif args['uniprot'] is not None:
-            uniprot = args['uniprot']
+        elif args["uniprot"] is not None:
+            uniprot = args["uniprot"]
             sql = f"select * from MOA_SPECIES_PROTEIN where UNIPROT_CODE='{uniprot}'"
         else:
             sql = "select * from MOA_SPECIES_PROTEIN"
@@ -143,36 +145,51 @@ class EntityLink(Resource):
         data = getData(sql)
         return data, 201
 
+
 # Resources
 # Entity
-api.add_resource(Entity, '/entity/<int:id>', endpoint='entity')
-api.add_resource(Entity, '/entity', endpoint='entitys')
+api.add_resource(Entity, "/entity/<int:id>", endpoint="entity")
+api.add_resource(Entity, "/entity", endpoint="entitys")
 # Triple
-api.add_resource(Triple, '/triple', endpoint='triples')
-api.add_resource(Triple, '/triple/<int:tripleid>', endpoint='triple')
-api.add_resource(Triple, '/triple/triple/<int:tripleid>', endpoint='tripleid')
-api.add_resource(Triple, '/triple/subject/<int:subjectid>', endpoint='subjectid')
-api.add_resource(Triple, '/triple/predicate/<int:predicateid>', endpoint='predicateid')
-api.add_resource(Triple, '/triple/object/<int:objectid>', endpoint='objectid')
+api.add_resource(Triple, "/triple", endpoint="triples")
+api.add_resource(Triple, "/triple/<int:tripleid>", endpoint="triple")
+api.add_resource(Triple, "/triple/triple/<int:tripleid>", endpoint="tripleid")
+api.add_resource(Triple, "/triple/subject/<int:subjectid>", endpoint="subjectid")
+api.add_resource(Triple, "/triple/predicate/<int:predicateid>", endpoint="predicateid")
+api.add_resource(Triple, "/triple/object/<int:objectid>", endpoint="objectid")
 # Evidence
-api.add_resource(Evidence, '/evidence', endpoint='evidences')
-api.add_resource(Evidence, '/evidence/<int:evidenceid>', endpoint='evidence')
-api.add_resource(Evidence, '/evidence/evidence/<int:evidenceid>', endpoint='evidenceid')
-api.add_resource(Evidence, '/evidence/triple/<int:evidenceTripleid>', endpoint='evidenceTripleid')
+api.add_resource(Evidence, "/evidence", endpoint="evidences")
+api.add_resource(Evidence, "/evidence/<int:evidenceid>", endpoint="evidence")
+api.add_resource(Evidence, "/evidence/evidence/<int:evidenceid>", endpoint="evidenceid")
+api.add_resource(
+    Evidence, "/evidence/triple/<int:evidenceTripleid>", endpoint="evidenceTripleid"
+)
 # Group
-api.add_resource(Group, '/group', endpoint='groups')
-api.add_resource(Group, '/group/<int:groupid>', endpoint='group')
-api.add_resource(Group, '/group/group/<int:groupid>', endpoint='groupid')
-api.add_resource(Group, '/group/entity/<int:entityid>', endpoint='entityid')
+api.add_resource(Group, "/group", endpoint="groups")
+api.add_resource(Group, "/group/<int:groupid>", endpoint="group")
+api.add_resource(Group, "/group/group/<int:groupid>", endpoint="groupid")
+api.add_resource(Group, "/group/entity/<int:entityid>", endpoint="entityid")
 # SpeciesProtein
-api.add_resource(SpeciesProtein, '/species-protein', endpoint='species-proteins')
-api.add_resource(SpeciesProtein, '/species-protein/<int:sprotid>', endpoint='species-protein')
-api.add_resource(SpeciesProtein, '/species-protein/species-protein/<int:sprotid>', endpoint='species-proteinid')
-api.add_resource(SpeciesProtein, '/species-protein/entity/<int:entityid>', endpoint='sprentityid')
-api.add_resource(SpeciesProtein, '/species-protein/species-code', endpoint='speccode')
-api.add_resource(SpeciesProtein, '/species-protein/uniprot-code', endpoint='uniprotcode')
+api.add_resource(SpeciesProtein, "/species-protein", endpoint="species-proteins")
+api.add_resource(
+    SpeciesProtein, "/species-protein/<int:sprotid>", endpoint="species-protein"
+)
+api.add_resource(
+    SpeciesProtein,
+    "/species-protein/species-protein/<int:sprotid>",
+    endpoint="species-proteinid",
+)
+api.add_resource(
+    SpeciesProtein, "/species-protein/entity/<int:entityid>", endpoint="sprentityid"
+)
+api.add_resource(SpeciesProtein, "/species-protein/species-code", endpoint="speccode")
+api.add_resource(
+    SpeciesProtein, "/species-protein/uniprot-code", endpoint="uniprotcode"
+)
 # EntityLink
-api.add_resource(EntityLink, '/entity-link', endpoint='entitylinks')
-api.add_resource(EntityLink, '/entity-link/<int:elid>', endpoint='entitylink')
-api.add_resource(EntityLink, '/entity-link/entity-link/<int:elid>', endpoint='elid')
-api.add_resource(EntityLink, '/entity-link/entity/<int:entityid>', endpoint='elentityid')
+api.add_resource(EntityLink, "/entity-link", endpoint="entitylinks")
+api.add_resource(EntityLink, "/entity-link/<int:elid>", endpoint="entitylink")
+api.add_resource(EntityLink, "/entity-link/entity-link/<int:elid>", endpoint="elid")
+api.add_resource(
+    EntityLink, "/entity-link/entity/<int:entityid>", endpoint="elentityid"
+)
