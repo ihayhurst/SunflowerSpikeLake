@@ -107,6 +107,7 @@ class Group(Resource):
         return data, 201
 
 
+
 class SpeciesProtein(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
@@ -152,6 +153,18 @@ class MClass(Resource):
             sql = f"select * from MOA_CLASS where CLASS_ID={clid}"
         else:
             sql = "select * from MOA_CLASS"
+        data = getData(sql)
+        return data, 201
+
+
+class Indication(Resource):
+    def get(self, indicid=None, entityid=None):
+        if indicid is not None:
+            sql = f"select * from MOA_INDICATION where INDICATION_ID={indicid}"
+        elif entityid is not None:
+            sql = f"select * from MOA_INDICATION where ENTITY_ID={entityid}"
+        else:
+            sql = "select * from MOA_INDICATION"
         data = getData(sql)
         return data, 201
 
@@ -206,3 +219,13 @@ api.add_resource(
 api.add_resource(MClass, "/class", endpoint="clids")
 api.add_resource(MClass, "/class/<int:clid>", endpoint="clid")
 
+# Indication
+api.add_resource(Indication, "/indication", endpoint="indications")
+api.add_resource(Indication, "/indication/<int:indicid>", endpoint="indication")
+api.add_resource(Indication, "/indication/indication/<int:indicid>", endpoint="indicationid")
+api.add_resource(Indication, "/indication/entity/<int:entityid>", endpoint="indicentityid")
+# Match
+
+# Predicate
+
+# Synonym

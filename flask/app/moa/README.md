@@ -36,6 +36,7 @@ for a single value or multiple values
 ```
 Subsequent responses will be of the same form
 
+
 ### Triple from ID
 
 **Definition**
@@ -48,6 +49,7 @@ Subsequent responses will be of the same form
 | `GET /moa/triple/subject/<id>`     | - returns subject(s) with given id      |
 | `GET /moa/triple/predicate/<id>`   | - returns predicate(s) with given id    |
 | `GET /moa/triple/object/<id>`      | - returns objects(s) with given id      |
+
 
 ### Evidence
 
@@ -72,6 +74,7 @@ Subsequent responses will be of the same form
 | `GET /moa/group/group/<id>`        | - returns group with given id               |
 | `GET /moa/group/entity/<id>`       | - returns groups(s) with given entity id    |
 
+
 ### SpeciesProtein
 
 **Definition**
@@ -85,6 +88,7 @@ Subsequent responses will be of the same form
 | `GET /moa/species-protein/species-code?species=<code>`  | - returns species protein id(s) with given species code  |
 | `GET /moa/species-protein/uniprot-code?uniprot=<code>`  | - returns species protein id(s) with given uniprot code  |
 
+
 ### EntityLink
 
 **Definition**
@@ -96,6 +100,7 @@ Subsequent responses will be of the same form
 | `GET /moa/entity-link/entity-link/<id>`        | - returns entity-link with given id           |
 | `GET /moa/entity-link/entity/<id>      `       | - returns entity-link(s) with given entity id |
 
+
 ### Class
 
 **Definition**
@@ -104,3 +109,23 @@ Subsequent responses will be of the same form
 |:-----------------------------------|:---------------------------------------|
 | `GET /moa/class`                   | - returns all class ids                |
 | `GET /moa/class/<id>`              | - returns class(s) with given id       |
+
+
+### Indication
+
+**Definition**
+
+| Endpoint                              | Expected return                                |
+|:--------------------------------------|:-----------------------------------------------|
+| `GET /moa/indication`                 | - returns all indication ids                   |
+| `GET /moa/indication/<id>`            | - returns indication with given id             |
+| `GET /moa/indication/indication/<id>` | - returns indication with given id             |
+| `GET /moa/indication/entity/<id>`     | - returns indications(s) with given entity id  |
+
+
+### Match
+
+**Definition**
+
+### Predicate
+### Synonym
