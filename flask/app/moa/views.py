@@ -168,10 +168,24 @@ class Indication(Resource):
         data = getData(sql)
         return data, 201
 
+class Match(Resource):
+    def get(self, matchid=None, synonym1=None, synonym2=None):
+        if matchid is not None:
+            sql = f"select * from MOA_MATCH where MATCH_ID={matchid}"
+        elif synonym1 is not None:
+            sql = f"select * from MOA_MATCH where SYNONYM_1={synonym1}"
+        elif synonym2 is not None:
+            sql = f"select * from MOA_MATCH where SYNONYM_2={synonym2}"
+        else:
+            sql = "select * from MOA_MATCH"
+        data = getData(sql)
+        return data, 201
+
 # Resources
 # Entity
 api.add_resource(Entity, "/entity", endpoint="entitys")
 api.add_resource(Entity, "/entity/<int:id>", endpoint="entity")
+
 # Triple
 api.add_resource(Triple, "/triple", endpoint="triples")
 api.add_resource(Triple, "/triple/<int:tripleid>", endpoint="triple")
@@ -179,6 +193,7 @@ api.add_resource(Triple, "/triple/triple/<int:tripleid>", endpoint="tripleid")
 api.add_resource(Triple, "/triple/subject/<int:subjectid>", endpoint="subjectid")
 api.add_resource(Triple, "/triple/predicate/<int:predicateid>", endpoint="predicateid")
 api.add_resource(Triple, "/triple/object/<int:objectid>", endpoint="objectid")
+
 # Evidence
 api.add_resource(Evidence, "/evidence", endpoint="evidences")
 api.add_resource(Evidence, "/evidence/<int:evidenceid>", endpoint="evidence")
@@ -191,6 +206,7 @@ api.add_resource(Group, "/group", endpoint="groups")
 api.add_resource(Group, "/group/<int:groupid>", endpoint="group")
 api.add_resource(Group, "/group/group/<int:groupid>", endpoint="groupid")
 api.add_resource(Group, "/group/entity/<int:entityid>", endpoint="entityid")
+
 # SpeciesProtein
 api.add_resource(SpeciesProtein, "/species-protein", endpoint="species-proteins")
 api.add_resource(
@@ -215,6 +231,7 @@ api.add_resource(EntityLink, "/entity-link/entity-link/<int:elid>", endpoint="el
 api.add_resource(
     EntityLink, "/entity-link/entity/<int:entityid>", endpoint="elentityid"
 )
+
 # Class
 api.add_resource(MClass, "/class", endpoint="clids")
 api.add_resource(MClass, "/class/<int:clid>", endpoint="clid")
@@ -224,7 +241,13 @@ api.add_resource(Indication, "/indication", endpoint="indications")
 api.add_resource(Indication, "/indication/<int:indicid>", endpoint="indication")
 api.add_resource(Indication, "/indication/indication/<int:indicid>", endpoint="indicationid")
 api.add_resource(Indication, "/indication/entity/<int:entityid>", endpoint="indicentityid")
+
 # Match
+api.add_resource(Match, "/match", endpoint="matches")
+api.add_resource(Match, "/match/<int:matchid>", endpoint="match")
+api.add_resource(Match, "/match/match/<int:matchid>", endpoint="matchid")
+api.add_resource(Match, "/match/synonym-1/<int:synonym1>", endpoint="synonym1")
+api.add_resource(Match, "/match/synonym-2/<int:synonym2>", endpoint="synonym2")
 
 # Predicate
 

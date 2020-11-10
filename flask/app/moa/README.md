@@ -127,5 +127,13 @@ Subsequent responses will be of the same form
 
 **Definition**
 
+| Endpoint                           | Expected return                           |
+|:-----------------------------------|:------------------------------------------|
+| `GET /moa/match`                   | - returns all match ids                   |
+| `GET /moa/match/<id>`              | - returns match id(s) with given id       |
+| `GET /moa/match/match/<id>`        | - returns match id(s) with given id       |
+| `GET /moa/match/synonym-1/<id>`    | - returns synonym 1(s) with given id      |
+| `GET /moa/match/synonym-2/<id>`    | - returns synonym 2(s) with given id      |
+
 ### Predicate
 ### Synonym
