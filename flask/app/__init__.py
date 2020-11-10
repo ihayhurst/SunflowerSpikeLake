@@ -12,16 +12,7 @@ def create_app():
     app.config.from_object('config.Production')
 
     with app.app_context():
-        #from . import db
-        #db.init_app(app)
         app.register_blueprint(website, url_prefix="/")
         app.register_blueprint(moa, url_prefix="/moa")
-
-        # Initialise Globals
-        dsn = cx_Oracle.makedsn(app.config['DATABASE_HOST'],
-                                app.config['DATABASE_PORT'],
-                                app.config['DATABASE_NAME'])
-        #conn_str = f"{app.config['DATABASE_USER']}, {app.config['DATABASE_PASSWORD']}, {dsn}, encoding='UTF-8'"
-        #print(f"Connection = {conn_str}")
     return app
 
