@@ -1,4 +1,17 @@
 # Mode Of Action / Mode of Resistance database API
+- [Mode Of Action / Mode of Resistance database API](#mode-of-action---mode-of-resistance-database-api)
+  * [Usage](#usage)
+    + [Entity](#entity)
+    + [Triple](#triple)
+    + [Evidence](#evidence)
+    + [Group](#group)
+    + [SpeciesProtein](#speciesprotein)
+    + [EntityLink](#entitylink)
+    + [Class](#class)
+    + [Indication](#indication)
+    + [Match](#match)
+    + [Predicate](#predicate)
+    + [Synonym](#synonym)
 
 ## Usage
 All responses will have the form
