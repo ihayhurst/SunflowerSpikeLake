@@ -130,10 +130,26 @@ Subsequent responses will be of the same form
 | Endpoint                           | Expected return                           |
 |:-----------------------------------|:------------------------------------------|
 | `GET /moa/match`                   | - returns all match ids                   |
-| `GET /moa/match/<id>`              | - returns match id(s) with given id       |
-| `GET /moa/match/match/<id>`        | - returns match id(s) with given id       |
+| `GET /moa/match/<id>`              | - returns match id with given id    i     |
+| `GET /moa/match/match/<id>`        | - returns match id with given id          |
 | `GET /moa/match/synonym-1/<id>`    | - returns synonym 1(s) with given id      |
 | `GET /moa/match/synonym-2/<id>`    | - returns synonym 2(s) with given id      |
 
 ### Predicate
+
+**Definition**
+
+| Endpoint                              | Expected return                        |
+|:--------------------------------------|:---------------------------------------|
+| `GET /moa/predicate`                  | - returns all predicate ids            |
+| `GET /moa/predicate/<id>`             | - returns predicates with given id     |
+
 ### Synonym
+
+**Definition**
+
+| Endpoint                             | Expected return                            |
+|:-------------------------------------|:-------------------------------------------|
+| `GET /moa/synonym`                   | - returns all synonym ids                  |
+| `GET /moa/synonym/<id>`              | - returns synonym with given id            |
+| `GET /moa/synonym/entity<id>`        | - returns synonym(s)  with given entity id |

@@ -181,6 +181,27 @@ class Match(Resource):
         data = getData(sql)
         return data, 201
 
+class Predicate(Resource):
+    def get(self, predicate=None):
+        if predicate is not None:
+            sql = f"select * from MOA_PREDICATE where PREDICATE_ID={predicate}"
+        else:
+            sql = "select * from MOA_PREDICATE"
+        data = getData(sql)
+        return data, 201
+
+
+class Synonym(Resource):
+    def get(self, synonymid=None, entityid=None):
+        if synonymid is not None:
+            sql = f"select * from MOA_SYNONYM where SYNONYM_ID={synonymid}"
+        elif entityid is not None:
+            sql = f"select * from MOA_SYNONYM where ENTITY_ID={entityid}"
+        else:
+            sql = "select * from MOA_SYNONYM"
+        data = getData(sql)
+        return data, 201
+
 # Resources
 # Entity
 api.add_resource(Entity, "/entity", endpoint="entitys")
@@ -250,5 +271,10 @@ api.add_resource(Match, "/match/synonym-1/<int:synonym1>", endpoint="synonym1")
 api.add_resource(Match, "/match/synonym-2/<int:synonym2>", endpoint="synonym2")
 
 # Predicate
+api.add_resource(Predicate, "/predicate", endpoint="predicates")
+api.add_resource(Predicate, "/predicate/<int:predicate>", endpoint="predicate")
 
 # Synonym
+api.add_resource(Synonym, "/synonym", endpoint="synonyms")
+api.add_resource(Synonym, "/synonym/<int:synonymid>", endpoint="synonym")
+api.add_resource(Synonym, "/synonym/entity/<int:entityid>", endpoint="synonymentityid")
