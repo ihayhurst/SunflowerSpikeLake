@@ -7,12 +7,14 @@ Content-Type application/json
 Then an array [ {"column_name":value, "column":value... }, {...}]
 for a single value or multiple values
 
-### Entity from ID
+### Entity
 
 **Definition** 
 
->`GET /moa/entity`        - with no arguement will return all ids  
->`GET /moa/entity/<id>`   - returns individual entity  
+| Endpoint                       | Expected return                      |
+|:-------------------------------|:-------------------------------------|
+| `GET /moa/entity`              | - returns all entity-links           |
+| `GET /moa/entity/<id>`         | - returns entity with given id       |
 
 **Arguements**
 
@@ -37,7 +39,7 @@ for a single value or multiple values
 Subsequent responses will be of the same form
 
 
-### Triple from ID
+### Triple
 
 **Definition**
 
